@@ -1145,6 +1145,7 @@ requires-dist = [
     { name = "ruff", specifier = "==0.12.5" },
     { name = "scikit-learn", specifier = "==1.4.1.post1" },
     { name = "zenml" },
+    { name = "zenml", extras = ["mlflow"] },
     { name = "zenml", extras = ["server"], specifier = "==0.84.0" },
 ]
 

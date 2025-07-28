@@ -16,5 +16,6 @@ dependencies = [
     "pip",
     "fastapi",
     "jwt", 
-    "multipart"
+    "multipart",
+    "zenml[mlflow]"
 ]

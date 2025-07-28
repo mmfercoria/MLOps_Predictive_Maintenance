@@ -1,9 +1,10 @@
 from zenml import step
 import pandas as pd
 from pathlib import Path
+from typing import Tuple
 
 @step
-def preprocess_data() -> pd.DataFrame:
+def preprocess_data() -> Tuple[pd.DataFrame, pd.DataFrame]:
     telemetry = pd.read_csv("data/PdM_telemetry.csv", parse_dates=["datetime"])
     errors = pd.read_csv("data/PdM_errors.csv", parse_dates=["datetime"])
     failures = pd.read_csv("data/PdM_failures.csv", parse_dates=["datetime"])
@@ -31,16 +32,4 @@ def preprocess_data() -> pd.DataFrame:
 
     features = pd.merge(features, error_pivot, on=["machineID", "datetime"], how="left").fillna(0)
 
-    ## Etiquetado
-    failures["label"] = 1
-    future_failures = failures.copy()
-    future_failures["datetime"] = future_failures["datetime"] - pd.Timedelta("24h")
-    labels = telemetry[["machineID", "datetime"]].merge(future_failures, on=["machineID", "datetime"], how="left").fillna(0)
-    labels["label"] = labels["label"].apply(lambda x: 1 if x != 0 else 0)
-
-    # Dataset final
-    dataset = pd.merge(features, labels[["machineID", "datetime", "label"]], on=["machineID", "datetime"], how="left")
-    dataset["label"] = dataset["label"].fillna(0).astype(int)
-    dataset = dataset.dropna()
-
-    return dataset
+    return features, failures

@@ -4,32 +4,52 @@ from pathlib import Path
 from typing import Tuple
 
 @step
-def preprocess_data() -> Tuple[pd.DataFrame, pd.DataFrame]:
-    telemetry = pd.read_csv("data/PdM_telemetry.csv", parse_dates=["datetime"])
-    errors = pd.read_csv("data/PdM_errors.csv", parse_dates=["datetime"])
-    failures = pd.read_csv("data/PdM_failures.csv", parse_dates=["datetime"])
+def preprocess_data() -> pd.DataFrame:
+    telemetry = pd.read_csv("data/train_telemetry.csv", parse_dates=["datetime"])
+    failures = pd.read_csv("data/train_failures.csv", parse_dates=["datetime"])
     machines = pd.read_csv("data/PdM_machines.csv")
-    maint = pd.read_csv("data/PdM_maint.csv", parse_dates=["datetime"])
-    
-    # Feature Engineering
-    telemetry = telemetry.sort_values(["machineID", "datetime"])
 
-    # Estadísticas móviles (3h y 24h)
-    rolling_3h = telemetry.set_index("datetime").groupby("machineID")[["volt", "rotate", "pressure", "vibration"]].rolling("3h", min_periods=1).agg(['mean', 'std']).reset_index()
-    rolling_3h.columns = ["machineID", "datetime"] + [f"{col[0]}_{col[1]}_3h" for col in rolling_3h.columns[2:]]
+    # Sort the telemetry data by machine and time
+    telemetry = telemetry.sort_values(by=["machineID", "datetime"])
 
-    rolling_24h = telemetry.set_index("datetime").groupby("machineID")[["volt", "rotate", "pressure", "vibration"]].rolling("24h", min_periods=1).agg(['mean', 'std']).reset_index()
-    rolling_24h.columns = ["machineID", "datetime"] + [f"{col[0]}_{col[1]}_24h" for col in rolling_24h.columns[2:]]
+    # Create rolling statistics every 3 hours for each machine
+    rolling = telemetry.set_index("datetime") \
+        .groupby("machineID")[["volt", "rotate", "pressure", "vibration"]] \
+        .rolling("3h", min_periods=1) \
+        .agg(['mean', 'std']) \
+        .reset_index()
 
-    # Unir features
-    features = pd.merge(rolling_3h, rolling_24h, on=["machineID", "datetime"])
+    # Rename columns to something simpler
+    rolling.columns = ["machineID", "datetime"] + [f"{col[0]}_{col[1]}_3h" for col in rolling.columns[2:]]
 
-    # Agregación de errores
-    error_counts = errors.copy()
-    error_counts["count"] = 1
-    error_counts = error_counts.set_index("datetime").groupby(["machineID", "errorID"]).rolling("24h", min_periods=1)["count"].sum().reset_index()
-    error_pivot = error_counts.pivot_table(index=["machineID", "datetime"], columns="errorID", values="count").fillna(0).reset_index()
+    # Mark failures with a label = 1
+    failures["label"] = 1
 
-    features = pd.merge(features, error_pivot, on=["machineID", "datetime"], how="left").fillna(0)
+    # Add the label to telemetry data if there's a failure within 24h for the same machine
+    telemetry_labels = pd.merge_asof(
+        rolling.sort_values("datetime"),
+        failures.sort_values("datetime"),
+        by="machineID",
+        on="datetime",
+        direction="forward",
+        tolerance=pd.Timedelta("24h")
+    )
 
-    return features, failures
+    # Fill the rest with 0 (no failure)
+    telemetry_labels["label"] = telemetry_labels["label"].fillna(0)
+
+    # Add info about the machine
+    data = pd.merge(telemetry_labels, machines, on="machineID", how="left")
+
+    # Convert the machine model (text) into numbers using one-hot encoding
+    data["model"] = data["model"].astype(str)
+    data = pd.get_dummies(data, columns=["model"])
+
+    # Remove the column "failure"
+    if "failure" in data.columns:
+        data = data.drop(columns=["failure"])
+
+    # Remove the datetime column
+    data = data.drop(columns=["datetime"])
+
+    return data

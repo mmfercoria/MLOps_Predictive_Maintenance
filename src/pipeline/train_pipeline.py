@@ -12,7 +12,7 @@ from src.steps.evaluate_model import evaluate_model
 )
 
 def training_pipeline():
-    features, failures = preprocess_data()
-    model, X_test, y_test = train_model(features, failures)
-    #evaluate_model(model=model, X_test=X_test, y_test=y_test)
+    data = preprocess_data()
+    model, X_test, y_test = train_model(data)
+    evaluate_model(model=model, X_test=X_test, y_test=y_test)
 

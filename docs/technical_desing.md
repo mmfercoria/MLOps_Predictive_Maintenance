@@ -25,21 +25,21 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
 #### Steps:
 
 1. **`preprocess_data`**:  
-   - Loads telemetry and failure data.
-   - Calculates rolling 3-hour features.
-   - Assigns binary label (1 if failure occurs within 24h, else 0).
-   - One-hot encodes machine model.
+   - Loads telemetry and failure data
+   - Calculates rolling 3-hour features
+   - Assigns binary label (1 if failure occurs within 24h, else 0)
+   - One-hot encodes machine model
 
 2. **`train_model`**:  
-   - Trains a RandomForestClassifier using preprocessed data.
-   - Splits the data into training and test sets.
+   - Trains a RandomForestClassifier using preprocessed data
+   - Splits the data into training and test sets
 
 3. **`evaluate_model`**:  
-   - Evaluates model performance using metrics like AUC, confusion matrix, etc.
-   - Saves results in a JSON file.
+   - Evaluates model performance using metrics like AUC, confusion matrix, etc
+   - Saves results in a JSON file
 
 4. **`save_model`**:  
-   - Saves the trained model in the ZenML artifact store.
+   - Saves the trained model in the ZenML artifact store
 
 ### Inference
 
@@ -48,13 +48,13 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
 #### Steps:
 
 1. **`preprocess_inference`**:  
-    - Loads telemetry data for prediction.
-    - Computes rolling 3-hour features.
-    - Merges machine metadata and encodes model.
+    - Loads telemetry data for prediction
+    - Computes rolling 3-hour features
+    - Merges machine metadata and encodes model
 
 2. **`predict`**:  
-    - Loads the latest saved model.
-    - Runs predictions on the new data.
+    - Loads the latest saved model
+    - Runs predictions on the new data
 
 ### Lineage and Traceability
 
@@ -72,8 +72,8 @@ The inference pipeline built with ZenML can be scheduled. This allows prediction
 While the current code works and enables predictions and visualization, this implementation still has some important limitations. It is not yet connected to a cloud server or automatic data source, so it is not scalable or production-ready. To make it more robust and maintainable, future improvements could include:
 
 - **Ensure a stable execution environment**  
-  Where the system can operate reliably with the necessary computing resources.
+  Where the system can operate reliably with the necessary computing resources
 - **Deploy the solution to a cloud infrastructure**  
-  Platforms like GCP, AWS, or Azure support auto-scaling, updates, and continuous maintenance.
+  Platforms like GCP, AWS, or Azure support auto-scaling, updates, and continuous maintenance
 - **Set up a cloud-based storage system**  
-  To provide continuous access to both historical and real-time data that feeds the inference and training pipelines.
+  To provide continuous access to both historical and real-time data that feeds the inference and training pipelines

@@ -1,14 +1,14 @@
 # MLOps Predictive Maintenance
 
-This project showcases a complete MLOps workflow for **predictive maintenance**, leveraging modern machine learning and automation practices to predict machinery failures before they happen.
+This project showcases a complete MLOps workflow for predictive maintenance, leveraging modern machine learning and automation practices to predict machinery failures before they happen.
 
 ## Objective
 
-To proactively detect potential machine failures using historical telemetry, and failure data. The ultimate goal is to **reduce unplanned downtime** through accurate failure predictions integrated into automated ML pipelines.
+To proactively detect potential machine failures using historical telemetry, and failure data. The ultimate goal is to reduce unplanned downtime through accurate failure predictions integrated into automated ML pipelines.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **ZenML** – MLOps pipeline orchestration  
 - **scikit-learn** – Model training and evaluation  
@@ -18,7 +18,7 @@ To proactively detect potential machine failures using historical telemetry, and
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```bash
 MLOps_Predictive_Maintenance/
@@ -34,3 +34,22 @@ MLOps_Predictive_Maintenance/
 │   ├── pipelines/           # ZenML pipeline definitions
 │   └── steps/               # Modular pipeline steps
 └── tests/                   # Unit and integration tests
+```
+
+---
+
+## MLOps pipelines
+
+Training Pipeline:
+    - Load data
+    - Preprocess and feature engineering
+    - Train model
+    - Evaluate performance
+    - Register model artifact
+
+Inference Pipeline:
+    - Preprocess data
+    - Load latest registered model
+    - Generate predictions
+
+---

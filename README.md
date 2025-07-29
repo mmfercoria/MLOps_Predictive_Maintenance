@@ -41,15 +41,14 @@ MLOps_Predictive_Maintenance/
 ## MLOps pipelines
 
 Training Pipeline:
-    - Load data
-    - Preprocess and feature engineering
-    - Train model
-    - Evaluate performance
-    - Register model artifact
+    1. Preprocess and feature engineering
+    2. Train model
+    3. Evaluate performance
+    4. Register model artifact
 
 Inference Pipeline:
-    - Preprocess data
-    - Load latest registered model
-    - Generate predictions
+    1. Preprocess data
+    2. Load latest registered model
+    3. Generate predictions
 
 ---

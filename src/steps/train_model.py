@@ -25,7 +25,7 @@ def train_model(
     class_0_downsampled = resample(class_0, replace=False, n_samples=len(class_1)*3, random_state=42)
     balanced = pd.concat([class_1, class_0_downsampled])
 
-    X_bal = balanced.drop(columns=["label"])
+    X_bal = balanced.drop(columns=["label", "machineID"])
     y_bal = balanced["label"]
 
     X_train, X_test, y_train, y_test = train_test_split(

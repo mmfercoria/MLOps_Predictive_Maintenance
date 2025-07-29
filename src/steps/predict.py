@@ -1,9 +1,18 @@
 from zenml import step
-from sklearn.base import ClassifierMixin
+from zenml.client import Client
+import joblib
 import pandas as pd
 
 @step
-def predict(model: ClassifierMixin, features: pd.DataFrame) -> pd.Series:
-    X = features.drop(columns=["machineID", "datetime"], errors="ignore")
-    preds = model.predict(X)
-    return pd.Series(preds)
+def predict(data: pd.DataFrame) -> pd.Series:
+    # Get the latest saved model
+    model_artifact = Client().get_artifact_version("rf_model_artifact")
+    model_path = model_artifact.load()
+
+    # Load the model from the file
+    model = joblib.load(model_path)
+
+    # Make predictions
+    predictions = model.predict(data)
+
+    return pd.Series(predictions)

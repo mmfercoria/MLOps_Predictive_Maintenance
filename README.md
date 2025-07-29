@@ -1,8 +1,8 @@
-# MLOps Predictive Maintenance
+# ⚙️ MLOps Predictive Maintenance
 
 This project showcases a complete MLOps workflow for predictive maintenance, leveraging modern machine learning and automation practices to predict machinery failures before they happen.
 
-## Objective
+## 🎯 Objective
 
 To proactively detect potential machine failures using historical telemetry, and failure data. The ultimate goal is to reduce unplanned downtime through accurate failure predictions integrated into automated ML pipelines.
 
@@ -18,7 +18,7 @@ To proactively detect potential machine failures using historical telemetry, and
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```bash
 MLOps_Predictive_Maintenance/
@@ -38,18 +38,27 @@ MLOps_Predictive_Maintenance/
 
 ---
 
-## MLOps pipelines
+## 🔄 MLOps Pipelines
 
-Training Pipeline:
-    1. Preprocess and feature engineering
-    2. Train model
-    3. Evaluate performance
-    4. Register model artifact
+This project includes two fully modular pipelines built with ZenML: one for training and another for inference.
 
-Inference Pipeline:
-    1. Preprocess data
-    2. Load latest registered model
-    3. Generate predictions
+### Training Pipeline
+
+Steps:
+1. **Preprocess and engineer features**
+2. **Train the model**
+3. **Evaluate model performance**
+4. **Register the model artifact**
+
+### Inference Pipeline
+
+Steps:
+1. **Preprocess input data**
+2. **Load the latest registered model**
+3. **Generate predictions**
+
+You can explore the full pipeline executions and visualizations here:  
+🔗 [ZenML Pipelines Dashboard](https://mmfercoria-mlops-predictive-maintenance.hf.space/projects/default/pipelines)
 
 ---
 

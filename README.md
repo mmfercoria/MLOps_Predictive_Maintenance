@@ -18,7 +18,7 @@ This solution is powered by a public predictive maintenance dataset from **Micro
 - **scikit-learn** – Model training and evaluation
 - **pandas / numpy** – Data manipulation
 - **joblib** – Model serialization
-- **Hugging Face Spaces** – Optional deployment interface
+- **Hugging Face Spaces** – Deployment interface
 
 ---
 

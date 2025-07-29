@@ -9,12 +9,17 @@ The model uses binary classification, where each data point is labeled 1 if a fa
 
 The pipelines in this project were built using ZenML, an MLOps orchestration platform that simplifies building, running, and versioning machine learning workflows.
 
-ZenML makes it easy to define steps like preprocessing, training, evaluation, model registration, and inference within a clean and modular structure. Its web interface (UI) allows users to explore pipeline runs, review saved artifacts, and track model versions over time.
+ZenML makes it easy to define steps like preprocessing, training, evaluation, model registration, and inference within a clean and modular structure. Its web interface allows users to explore pipeline runs, review saved artifacts, and track model versions over time.
 
-![Descripción de la imagen](images/pipelines.png)
+![ZenML Pipelines UI](images/pipelines.png)
+
+🔗 [ZenML Pipelines Dashboard](https://mmfercoria-mlops-predictive-maintenance.hf.space/projects/default/pipelines)
 
 
 ### Training
+
+![ZenML Training](images/train_pipeline.png)
+
 #### Steps:
 
 1. **`preprocess_data`**:  
@@ -35,6 +40,9 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
    - Saves the trained model in the ZenML artifact store.
 
 ### Inference
+
+![ZenML Training](images/inference_pipeline.png)
+
 #### Steps:
 
 1. **`preprocess_inference`**:  

@@ -6,6 +6,7 @@ The model uses binary classification, where each data point is labeled 1 if a fa
 
 > This approach is based on the solution presented in the following Kaggle notebook:  
 > [Predictive Maintenance - ANAI by d4rklucif3r](https://www.kaggle.com/code/d4rklucif3r/predictive-maintenance-anai)
+
 ---
 ## ML pipeline automation
 
@@ -55,18 +56,19 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
 2. **`predict`**:  
     - Loads the latest saved model
     - Runs predictions on the new data
-
+---
 ### Lineage and Traceability
 
 ZenML automatically tracks the full lineage of each pipeline run, including the steps executed, parameters used, models, and artifacts generated. This allows for complete reproducibility, making it easy to trace back the origin of models, compare versions, audit experiments, and understand how each output was produced throughout the ML lifecycle.
 
+---
 ### Deployment and Usage
 
 The model is designed to be deployed in a batch inference setup, where new data is processed at scheduled time intervals. Instead of making predictions in real time, the pipeline runs periodically .
 
 The inference pipeline built with ZenML can be scheduled. This allows predictions to be generated automatically without manual intervention, ensuring consistency, traceability, and efficiency in predictive maintenance operations.
 
-
+---
 ### Implementation Notes
 
 While the current code works and enables predictions and visualization, this implementation still has some important limitations. It is not yet connected to a cloud server or automatic data source, so it is not scalable or production-ready. To make it more robust and maintainable, future improvements could include:

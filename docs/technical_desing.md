@@ -4,6 +4,8 @@ A Random Forest model is trained using sensor readings (volt, rotate, pressure, 
 
 The model uses binary classification, where each data point is labeled 1 if a failure occurs within the next 24 hours, and 0 otherwise. 
 
+> This approach is based on the solution presented in the following Kaggle notebook:  
+> [Predictive Maintenance - ANAI by d4rklucif3r](https://www.kaggle.com/code/d4rklucif3r/predictive-maintenance-anai)
 ---
 ## ML pipeline automation
 
@@ -29,7 +31,7 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
    - One-hot encodes machine model.
 
 2. **`train_model`**:  
-   - Trains a `RandomForestClassifier` using preprocessed data.
+   - Trains a RandomForestClassifier using preprocessed data.
    - Splits the data into training and test sets.
 
 3. **`evaluate_model`**:  
@@ -58,3 +60,8 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
 
 ZenML automatically tracks the full lineage of each pipeline run, including the steps executed, parameters used, models, and artifacts generated. This allows for complete reproducibility, making it easy to trace back the origin of models, compare versions, audit experiments, and understand how each output was produced throughout the ML lifecycle.
 
+### Deployment and Usage
+
+The model is designed to be deployed in a batch inference setup, where new data is processed at scheduled time intervals. Instead of making predictions in real time, the pipeline runs periodically .
+
+The inference pipeline built with ZenML can be scheduled. This allows predictions to be generated automatically without manual intervention, ensuring consistency, traceability, and efficiency in predictive maintenance operations.

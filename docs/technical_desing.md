@@ -65,3 +65,15 @@ ZenML automatically tracks the full lineage of each pipeline run, including the 
 The model is designed to be deployed in a batch inference setup, where new data is processed at scheduled time intervals. Instead of making predictions in real time, the pipeline runs periodically .
 
 The inference pipeline built with ZenML can be scheduled. This allows predictions to be generated automatically without manual intervention, ensuring consistency, traceability, and efficiency in predictive maintenance operations.
+
+
+### Implementation Notes
+
+While the current code works and enables predictions and visualization, this implementation still has some important limitations. It is not yet connected to a cloud server or automatic data source, so it is not scalable or production-ready. To make it more robust and maintainable, future improvements could include:
+
+- **Ensure a stable execution environment**  
+  Where the system can operate reliably with the necessary computing resources.
+- **Deploy the solution to a cloud infrastructure**  
+  Platforms like GCP, AWS, or Azure support auto-scaling, updates, and continuous maintenance.
+- **Set up a cloud-based storage system**  
+  To provide continuous access to both historical and real-time data that feeds the inference and training pipelines.

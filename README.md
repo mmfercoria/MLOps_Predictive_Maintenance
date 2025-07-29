@@ -10,6 +10,10 @@ This solution is powered by a public predictive maintenance dataset from **Micro
 
 [Microsoft Azure Predictive Maintenance Dataset on Kaggle](https://www.kaggle.com/datasets/arnabbiswas1/microsoft-azure-predictive-maintenance/data)
 
+Login credentials:
+user: mmfercoria
+pass: Pa$$word9
+
 ---
 
 ## Tech Stack

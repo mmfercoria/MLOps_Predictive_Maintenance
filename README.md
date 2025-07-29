@@ -4,8 +4,6 @@ This project showcases a complete MLOps workflow for predictive maintenance, lev
 
 ## 🎯 Objective
 
-## 🎯 Objective
-
 Build a complete machine learning solution that predicts whether a machine is likely to fail in the near future, using the provided dataset. The main goal is to proactively detect potential machine failures using historical telemetry and failure data. By integrating accurate failure predictions into automated ML pipelines, this project aims to minimize unplanned downtime and improve maintenance strategies in industrial settings.
 
 This solution is powered by a public predictive maintenance dataset from **Microsoft Azure**, available on Kaggle:

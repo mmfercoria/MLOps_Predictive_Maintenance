@@ -1,5 +1,6 @@
-from zenml import step
 import pandas as pd
+from zenml import step
+
 
 @step
 def preprocess_inference() -> pd.DataFrame:
@@ -10,14 +11,18 @@ def preprocess_inference() -> pd.DataFrame:
     telemetry = telemetry.sort_values(by=["machineID", "datetime"])
 
     # Calculate 3-hour average and std for each sensor
-    rolling = telemetry.set_index("datetime") \
-        .groupby("machineID")[["volt", "rotate", "pressure", "vibration"]] \
-        .rolling("3h", min_periods=1) \
-        .agg(['mean', 'std']) \
+    rolling = (
+        telemetry.set_index("datetime")
+        .groupby("machineID")[["volt", "rotate", "pressure", "vibration"]]
+        .rolling("3h", min_periods=1)
+        .agg(["mean", "std"])
         .reset_index()
+    )
 
     # Rename the columns
-    rolling.columns = ["machineID", "datetime"] + [f"{col[0]}_{col[1]}_3h" for col in rolling.columns[2:]]
+    rolling.columns = ["machineID", "datetime"] + [
+        f"{col[0]}_{col[1]}_3h" for col in rolling.columns[2:]
+    ]
 
     # Add machine info to the data
     data = pd.merge(rolling, machines, on="machineID", how="left")

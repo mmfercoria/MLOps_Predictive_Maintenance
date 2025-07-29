@@ -1,9 +1,11 @@
-from zenml import step, register_artifact
-from zenml.client import Client
-import joblib
 import os
-from sklearn.ensemble import RandomForestClassifier
 from datetime import datetime
+
+import joblib
+from sklearn.ensemble import RandomForestClassifier
+from zenml import register_artifact, step
+from zenml.client import Client
+
 
 @step
 def save_model(model: RandomForestClassifier) -> None:
@@ -23,8 +25,7 @@ def save_model(model: RandomForestClassifier) -> None:
 
     # Register artifact with unique name (optional)
     register_artifact(
-        folder_or_file_uri=model_path,
-        name=f"rf_model_artifact_{timestamp}"
+        folder_or_file_uri=model_path, name=f"rf_model_artifact_{timestamp}"
     )
 
     print(f"Model saved and registered at: {model_path}")

@@ -1,28 +1,31 @@
-from zenml import step
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.utils import resample
-from sklearn.model_selection import train_test_split
-from typing import Tuple, Annotated
+from typing import Annotated, Tuple
+
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.utils import resample
+from zenml import step
+
 
 @step
 def train_model(
-    data: pd.DataFrame
+    data: pd.DataFrame,
 ) -> Tuple[
     Annotated[RandomForestClassifier, "model"],
     Annotated[pd.DataFrame, "X_test"],
-    Annotated[pd.Series, "y_test"]
+    Annotated[pd.Series, "y_test"],
 ]:
-    
+
     X = data.drop(columns=["label"])
     y = data["label"]
-
 
     train_data = pd.concat([X, y], axis=1)
     class_0 = train_data[train_data.label == 0]
     class_1 = train_data[train_data.label == 1]
 
-    class_0_downsampled = resample(class_0, replace=False, n_samples=len(class_1)*3, random_state=42)
+    class_0_downsampled = resample(
+        class_0, replace=False, n_samples=len(class_1) * 3, random_state=42
+    )
     balanced = pd.concat([class_1, class_0_downsampled])
 
     X_bal = balanced.drop(columns=["label", "machineID"])

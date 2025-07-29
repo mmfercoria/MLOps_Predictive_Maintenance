@@ -1,7 +1,8 @@
-from zenml import step
-from zenml.client import Client
 import joblib
 import pandas as pd
+from zenml import step
+from zenml.client import Client
+
 
 @step
 def predict(data: pd.DataFrame) -> pd.Series:

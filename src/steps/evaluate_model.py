@@ -1,9 +1,12 @@
-from zenml import step
-from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
-from sklearn.base import ClassifierMixin
-import pandas as pd
 import json
 from pathlib import Path
+
+import pandas as pd
+from sklearn.base import ClassifierMixin
+from sklearn.metrics import (classification_report, confusion_matrix,
+                             roc_auc_score)
+from zenml import step
+
 
 @step
 def evaluate_model(
@@ -24,7 +27,7 @@ def evaluate_model(
     results = {
         "confusion_matrix": cm,
         "classification_report": report,
-        "roc_auc": round(auc, 4)
+        "roc_auc": round(auc, 4),
     }
 
     # Save to JSON

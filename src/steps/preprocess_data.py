@@ -1,7 +1,6 @@
-from zenml import step
 import pandas as pd
-from pathlib import Path
-from typing import Tuple
+from zenml import step
+
 
 @step
 def preprocess_data() -> pd.DataFrame:
@@ -13,14 +12,18 @@ def preprocess_data() -> pd.DataFrame:
     telemetry = telemetry.sort_values(by=["machineID", "datetime"])
 
     # Create rolling statistics every 3 hours for each machine
-    rolling = telemetry.set_index("datetime") \
-        .groupby("machineID")[["volt", "rotate", "pressure", "vibration"]] \
-        .rolling("3h", min_periods=1) \
-        .agg(['mean', 'std']) \
+    rolling = (
+        telemetry.set_index("datetime")
+        .groupby("machineID")[["volt", "rotate", "pressure", "vibration"]]
+        .rolling("3h", min_periods=1)
+        .agg(["mean", "std"])
         .reset_index()
+    )
 
     # Rename columns to something simpler
-    rolling.columns = ["machineID", "datetime"] + [f"{col[0]}_{col[1]}_3h" for col in rolling.columns[2:]]
+    rolling.columns = ["machineID", "datetime"] + [
+        f"{col[0]}_{col[1]}_3h" for col in rolling.columns[2:]
+    ]
 
     # Mark failures with a label = 1
     failures["label"] = 1
@@ -32,7 +35,7 @@ def preprocess_data() -> pd.DataFrame:
         by="machineID",
         on="datetime",
         direction="forward",
-        tolerance=pd.Timedelta("24h")
+        tolerance=pd.Timedelta("24h"),
     )
 
     # Fill the rest with 0 (no failure)

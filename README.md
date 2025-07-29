@@ -72,9 +72,22 @@ You can explore the full pipeline executions and visualizations here:
 
 ## 🚀 How to Run the Project
 
-### 1. Install dependencies
+### Sync Project Dependencies
 
 ```bash
-uv venv
-uv pip install -r requirements.txt
+uv sync
+```
+
+### Authenticate and Set ZenML Stack
+
+```bash
+zenml login https://mmfercoria-mlops-predictive-maintenance.hf.space
+zenml stack set hf_stack
+```
+
+###  Run Training and Inference Pipelines
+
+```bash
+python main_train.py
+python main_inf.py
 ```

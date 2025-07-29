@@ -15,7 +15,8 @@ dependencies = [
     "fastapi",
     "jwt",
     "multipart",
-    "zenml[mlflow]"
+    "zenml[mlflow]",
+    "pip"
 ]
 
 [project.optional-dependencies]

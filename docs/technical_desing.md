@@ -16,9 +16,9 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
 
 🔗 [ZenML Pipelines Dashboard](https://mmfercoria-mlops-predictive-maintenance.hf.space/projects/default/pipelines)
 
-Login credentials:
-user: mmfercoria
-pass: Pa$$word9
+##### Login Credentials
+- **User:** `mmfercoria`
+- **Password:** `Pa$$word9`
 
 ![ZenML Pipelines UI](images/pipelines.png)
 

@@ -11,10 +11,10 @@ The pipelines in this project were built using ZenML, an MLOps orchestration pla
 
 ZenML makes it easy to define steps like preprocessing, training, evaluation, model registration, and inference within a clean and modular structure. Its web interface allows users to explore pipeline runs, review saved artifacts, and track model versions over time.
 
-![ZenML Pipelines UI](images/pipelines.png)
-
 🔗 [ZenML Pipelines Dashboard](https://mmfercoria-mlops-predictive-maintenance.hf.space/projects/default/pipelines)
 
+
+![ZenML Pipelines UI](images/pipelines.png)
 
 ### Training
 
@@ -53,3 +53,8 @@ ZenML makes it easy to define steps like preprocessing, training, evaluation, mo
 2. **`predict`**:  
     - Loads the latest saved model.
     - Runs predictions on the new data.
+
+### Lineage and Traceability
+
+ZenML automatically tracks the full lineage of each pipeline run, including the steps executed, parameters used, models, and artifacts generated. This allows for complete reproducibility, making it easy to trace back the origin of models, compare versions, audit experiments, and understand how each output was produced throughout the ML lifecycle.
+

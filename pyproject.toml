@@ -11,11 +11,17 @@ dependencies = [
     "scikit-learn==1.4.1.post1",
     "pyyaml==6.0.1", 
     "ipykernel==6.29.4",
-    "zenml",
     "zenml[server]==0.84.0",
-    "pip",
     "fastapi",
     "jwt", 
     "multipart",
     "zenml[mlflow]"
+]
+
+[project.optional-dependencies]
+dev = [
+    "black==25.1.0",
+    "isort==6.0.1",
+    "ruff==0.12.5",
+    "pre-commit"
 ]

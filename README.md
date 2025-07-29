@@ -31,13 +31,15 @@ MLOps_Predictive_Maintenance/
 ├── .gitignore
 ├── pyproject.toml           # Dependency management with uv
 ├── uv.lock                  # Locked dependencies
-├── notebooks/               # Data exploration and experiments
 ├── data/                    # Raw and inference data
+├── docs/                      # Project documentation
+│   ├── technical_design.md    # Architecture, data flow, tools and rationale
+│   └── short_report.md        # Concise summary of the technical solution
 ├── src/                     # Source code
 │   ├── models/              # Model training and evaluation
 │   ├── pipelines/           # ZenML pipeline definitions
 │   └── steps/               # Modular pipeline steps
-└── tests/                   # Unit and integration tests
+└── .pre-commit-config.yaml  # Linting and formatting hooks
 ```
 
 ---

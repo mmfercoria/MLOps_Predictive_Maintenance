@@ -52,3 +52,12 @@ Inference Pipeline:
     3. Generate predictions
 
 ---
+
+## 🚀 How to Run the Project
+
+### 1. Install dependencies
+
+```bash
+uv venv
+uv pip install -r requirements.txt
+```

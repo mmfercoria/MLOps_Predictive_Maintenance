@@ -2,7 +2,7 @@
 
 ### What has been achieved
 
-In this first phase of the project, a Random Forest machine learning model was built to predict whether a machine will fail within the next 24 hours, based on sensor readings such as voltage, rotation, pressure, and vibration. The solution includes robust feature engineering using 3-hour rolling windows and automatic labeling of upcoming failures based on time-based conditions.
+In this first phase of the project, a Random Forest machine learning model was built to predict whether a machine will fail within the next 24 hours, based on sensor readings.
 
 Beyond the model itself, the full ML lifecycle was automated using modular pipelines built with ZenML. These pipelines cover preprocessing, training, evaluation, model saving, and prediction steps—ensuring traceability, reproducibility, and a well-structured workflow.
 

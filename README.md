@@ -60,6 +60,8 @@ Steps:
 You can explore the full pipeline executions and visualizations here:  
 🔗 [ZenML Pipelines Dashboard](https://mmfercoria-mlops-predictive-maintenance.hf.space/projects/default/pipelines)
 
+> **This project is deployed and supported by [Hugging Face Spaces](https://huggingface.co/spaces/mmfercoria/MLOps_Predictive_Maintenance)** – enabling live interaction and visualization of MLOps workflows.
+
 ---
 
 ## 🚀 How to Run the Project

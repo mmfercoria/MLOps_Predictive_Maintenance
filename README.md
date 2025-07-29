@@ -1,6 +1,6 @@
 # ⚙️ MLOps Predictive Maintenance
 
-This project showcases a complete MLOps workflow for predictive maintenance, leveraging modern machine learning and automation practices to predict machinery failures before they happen.
+This project presents a **basic MLOps workflow** for predictive maintenance. It is intended as a simplified example to demonstrate key concepts such as data preprocessing, model training, evaluation, inference, and pipeline orchestration using modern MLOps tools and practices.
 
 ## 🎯 Objective
 

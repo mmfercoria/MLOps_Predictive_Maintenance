@@ -33,8 +33,8 @@ MLOps_Predictive_Maintenance/
 ├── uv.lock                  # Locked dependencies
 ├── data/                    # Raw and inference data
 ├── docs/                      # Project documentation
-│   ├── technical_design.md    # Architecture, data flow, tools and rationale
-│   └── short_report.md        # Concise summary of the technical solution
+│   ├── technical_design.md    # Architecture, data flow and tools
+│   └── short_report.md        # Summary of the technical solution and next steps
 ├── src/                     # Source code
 │   ├── models/              # Model training and evaluation
 │   ├── pipelines/           # ZenML pipeline definitions
